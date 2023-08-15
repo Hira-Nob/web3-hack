@@ -33,6 +33,12 @@ export function Navbar() {
             <Link href="/mint" className={styles.link}>
               Mint
             </Link>
+            <Link href="/test" className={styles.link}>
+              Test
+            </Link>
+            <Link href="/test2" className={styles.link}>
+              Test2
+            </Link>
           </div>
         </div>
 
