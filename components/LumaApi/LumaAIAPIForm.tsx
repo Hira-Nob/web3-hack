@@ -10,9 +10,11 @@ const LumaAIApiForm: React.FC = () => {
   const [message, setMessage] = useState<string>('');
   const [downloadData, setDownloadData] = useState<string>('');
   const [responseData, setResponseData] = useState<any>(null);  // Add this line for response data
-  const [file, setFile] = useState<File | null>(null);
-
+  const [videofile, setVideoFile] = useState<File | null>(null);
+  const [imagefile, setImageFile] = useState<File | null>(null);
   const apiClient = new LumaAIApiClient(process.env.NEXT_PUBLIC_LUMAAI_API_KEY || '');
+  const [imageIpfsHash, setImageIpfsHash] = useState<string>(""); // 画像のIPFSハッシュを保持
+  const [metaIpfsHash, setMetaIpfsHash] = useState<string>(""); // メタデータのIPFSハッシュを保持
 
   const handleCreateSubmit = async () => {
     try {
@@ -26,10 +28,12 @@ const LumaAIApiForm: React.FC = () => {
     }
   };
 
-  const handleUploadSubmit = async () => {
+
+
+  const handleVideoUploadSubmit = async () => {
     try {
-      if (file) {
-        const status=await apiClient.upload(uploadURL,file);
+      if (videofile) {
+        const status=await apiClient.upload(uploadURL,videofile);
         if (status==200){
           setMessage('Uploaded successfully!');
         }
@@ -59,6 +63,55 @@ const LumaAIApiForm: React.FC = () => {
     }
   };
 
+  const handlePinstaSubmit = async () => {
+    const formData = new FormData();
+    formData.append("file", imagefile!);
+    const response = await fetch("https://api.pinata.cloud/pinning/pinFileToIPFS", {
+      method: "POST",
+      headers: {
+        Authorization: `Bearer ${process.env.NEXT_PUBLIC_PINATA_JWT}`,
+      },
+      body: formData,
+    });
+
+    const data = await response.json();
+    setResponseData(data);
+    setImageIpfsHash(data.IpfsHash); //ImageのIPFSハッシュをセット
+
+
+    const metadata = {
+        title: title,
+        slug: slug,
+        image: "ipfs://"+imageIpfsHash,
+    };
+        
+    const metaresponse = await fetch("https://api.pinata.cloud/pinning/pinJSONToIPFS", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${process.env.NEXT_PUBLIC_PINATA_JWT}`,
+      },
+      body:  JSON.stringify(metadata),
+    });
+
+
+    const metaResponse = await metaresponse.json();
+    setResponseData(metaResponse);
+    setMetaIpfsHash(metaResponse.IpfsHash); //ImageのIPFSハッシュをセット
+
+
+
+    // スマートコントラクトにNFTを作成するトランザクションを送信
+    // ここで、newIpfsHashをNFTのメタデータとして指定することができます
+    // スマートコントラクトの関数呼び出しやトランザクションは、
+    // プロジェクトの環境に合わせて適切に実装する必要があります
+  };
+
+
+  
+
+
+
   // const handleCheckAndDownloadSubmit = async () => {
   //   try {
   //     const data = await apiClient.checkAndDownload(slug);
@@ -71,7 +124,7 @@ const LumaAIApiForm: React.FC = () => {
 
   const handleMakeNerf = async () => {
     await handleCreateSubmit();
-    await handleUploadSubmit();
+    await handleVideoUploadSubmit();
     // await handleTriggerSubmit();
   };
 
@@ -87,14 +140,20 @@ const LumaAIApiForm: React.FC = () => {
       />
       <button onClick={handleCreateSubmit}>Submit</button>
 
-
-            {/* Upload File */}
-            <h2>Upload File</h2>
+      {/* Upload Imagw */}
+      <h2>Upload Thumbnail</h2>
       <input
         type="file"
-        onChange={(e) => setFile(e.target.files ? e.target.files[0] : null)}
+        onChange={(e) => setImageFile(e.target.files ? e.target.files[0] : null)}
       />
-      <button onClick={handleUploadSubmit}>Upload</button>
+
+      {/* Upload Video */}
+      <h2>Upload Video</h2>
+      <input
+        type="file"
+        onChange={(e) => setVideoFile(e.target.files ? e.target.files[0] : null)}
+      />
+      <button onClick={handleVideoUploadSubmit}>Upload</button>
 
 
       {/* Trigger */}
@@ -113,12 +172,21 @@ const LumaAIApiForm: React.FC = () => {
       <button onClick={handleCheckAndDownloadSubmit}>Check and Download</button>
       <pre>{downloadData}</pre> */}
       <br/>
+      <h2>Make Nerf Create Upload Trigger を順にすべて実行するボタン</h2>
+
       <button
-                onClick={handleMakeNerf}>
-                Make Nerf
+          onClick={handleMakeNerf}>
+          Make Nerf
+      </button>
+
+      <h2>Pinataにメタデータを保存する</h2>
+
+      <button
+          onClick={handlePinstaSubmit}>
+          To Pinata
       </button>
       {/* Success or Error Messages */}
-      <div>{message}</div>
+      <h3>{message}</h3>
 
       {responseData && (
         <div>
