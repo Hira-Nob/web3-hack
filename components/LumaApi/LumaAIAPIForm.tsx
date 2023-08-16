@@ -7,9 +7,9 @@ import { NETWORK, NFT_COLLECTION_ADDRESS } from '../../const/contractAddresses';
 import { Wallet } from 'ethers';
 
 const LumaAIApiForm: React.FC = () => {
-  const [title, setTitle] = useState<string>('');
+  const [title, setTitle] = useState<string>('default title');
   const [uploadURL, setUploadURL] = useState<string>('');
-  const [slug, setSlug] = useState<string>('');
+  const [slug, setSlug] = useState<string>('default slug');
   const [message, setMessage] = useState<string>('');
   const [downloadData, setDownloadData] = useState<string>('');
   const [responseData, setResponseData] = useState<any>(null);  // Add this line for response data
@@ -129,8 +129,12 @@ const LumaAIApiForm: React.FC = () => {
     const contract = await sdk.getContract(NFT_COLLECTION_ADDRESS);
 
     const metadatas = [{
-      name: "Cool NFT2",
-      description: "This is a cool NFT2",
+      name: title,
+      description: "This is a Good NFT",
+      attributes: [{
+        trait_type: "slug",
+        value: slug
+      }],
       image: imagefile
     }];
 
@@ -139,6 +143,13 @@ const LumaAIApiForm: React.FC = () => {
     const firstNFT = await results[0].data();
     setNftTokenId(firstTokenId.toString());
     setNftTokenData(JSON.stringify(firstNFT));
+
+    const quantity = 1; // how many unique NFTs you want to claim
+    const tx = await contract.erc721.claim(quantity);
+    // const receipt = tx.receipt; // the transaction receipt
+    // const claimedTokenId = tx.id; // the id of the NFT claimed
+    // const claimedNFT = await tx.data(); // (optional) get the claimed NFT metadata
+
    }
   return (
     <div>
