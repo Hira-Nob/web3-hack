@@ -15,7 +15,7 @@ const Home: NextPage = () => {
           <div className={styles.heroBackground}>
             <div className={styles.heroBackgroundInner}>
               <Image
-                src="/hero-gradient.png"
+                src="/1_gradients.jpg"
                 width={1390}
                 height={1390}
                 alt="Background gradient from red to blue"
@@ -26,9 +26,9 @@ const Home: NextPage = () => {
           </div>
           <div className={styles.heroAssetFrame}>
             <Image
-              src="/hero-asset.png"
-              width={860}
-              height={540}
+              src="/2_3Dx_Studio.png"
+              width={500}
+              height={500}
               alt="Hero asset, NFT marketplace"
               quality={100}
               className={styles.heroAsset}
@@ -38,34 +38,33 @@ const Home: NextPage = () => {
             <div className={styles.heroBody}>
               <h1 className={styles.heroTitle}>
                 <span className={styles.heroTitleGradient}>
-                  Build NFT Marketplaces
+                  IWASE 3D NFT Marketplaces
                 </span>
                 <br />
-                faster than ever.
               </h1>
               <p className={styles.heroSubtitle}>
-                <Link
+                {/* <Link
                   className={styles.link}
                   href="https://thirdweb.com"
                   target="_blank"
                 >
                   thirdweb
-                </Link>{" "}
-                gives you the tools you need to create audited, performant, and
-                flexible NFT marketplaces in <b>hours</b>, <i>not months</i>.
+                </Link>{" "} */}
+                動画をアップロードするだけで、<br />
+                あなたの作品・体験が3D NFTとして出品出来ます。
               </p>
 
               <div className={styles.heroCtaContainer}>
                 <Link className={styles.heroCta} href="/buy">
                   Get Started
                 </Link>
-                <Link
+                {/* <Link
                   className={styles.secondaryCta}
                   href="https://github.com/thirdweb-example/marketplace-v3"
                   target="_blank"
                 >
                   GitHub
-                </Link>
+                </Link> */}
               </div>
             </div>
           </div>
