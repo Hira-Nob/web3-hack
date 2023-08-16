@@ -16,7 +16,7 @@ export default function Mint() {
       <h1>Mint NFTs</h1>
       <p>Lets make your NFT.</p>
       <LumaAIApiForm />
-      <LumaEmbed  slug="d2d2badd-8bdd-4874-84f7-9df2aae27f29" />
+      {/* <LumaEmbed  slug="d2d2badd-8bdd-4874-84f7-9df2aae27f29" /> */}
     </Container>
   );
 }
