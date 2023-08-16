@@ -2,6 +2,9 @@
 import React, { useState } from 'react';
 import LumaAIApiClient from '../../lib/api/LumaAIApiClient';
 import LumaEmbed from './LumaEnbed';
+import { ThirdwebSDK } from '@thirdweb-dev/sdk';
+import { NETWORK, NFT_COLLECTION_ADDRESS } from '../../const/contractAddresses';
+import { Wallet } from 'ethers';
 
 const LumaAIApiForm: React.FC = () => {
   const [title, setTitle] = useState<string>('');
@@ -15,6 +18,8 @@ const LumaAIApiForm: React.FC = () => {
   const apiClient = new LumaAIApiClient(process.env.NEXT_PUBLIC_LUMAAI_API_KEY || '');
   const [imageIpfsHash, setImageIpfsHash] = useState<string>(""); // 画像のIPFSハッシュを保持
   const [metaIpfsHash, setMetaIpfsHash] = useState<string>(""); // メタデータのIPFSハッシュを保持
+  const [nftTokenId, setNftTokenId] = useState<string>(""); // NFTのトークンIDを保持
+  const [nftTokendata, setNftTokenData] = useState<string>(""); // NFTのトークンURIを保持
 
   const handleCreateSubmit = async () => {
     try {
@@ -99,28 +104,7 @@ const LumaAIApiForm: React.FC = () => {
     setResponseData(metaResponse);
     setMetaIpfsHash(metaResponse.IpfsHash); //ImageのIPFSハッシュをセット
 
-
-
-    // スマートコントラクトにNFTを作成するトランザクションを送信
-    // ここで、newIpfsHashをNFTのメタデータとして指定することができます
-    // スマートコントラクトの関数呼び出しやトランザクションは、
-    // プロジェクトの環境に合わせて適切に実装する必要があります
   };
-
-
-  
-
-
-
-  // const handleCheckAndDownloadSubmit = async () => {
-  //   try {
-  //     const data = await apiClient.checkAndDownload(slug);
-  //     setDownloadData(JSON.stringify(data, null, 2));
-  //     setMessage('Data fetched successfully!');
-  //   } catch (error :any ) {
-  //     setMessage(`Error: ${error.message}`);
-  //   }
-  // };
 
   const handleMakeNerf = async () => {
     await handleCreateSubmit();
@@ -128,6 +112,34 @@ const LumaAIApiForm: React.FC = () => {
     // await handleTriggerSubmit();
   };
 
+
+   const handleMakeNFT = async () => {
+    const validPrivateKey = process.env.NEXT_PUBLIC_PRIVATE_KEY; // サンプルキー
+    const signer = new Wallet(validPrivateKey!);
+    // 10d77ba769f7b80ed47e289e13947b9de4c870b93910a7d0c49f38248494b8a6
+    
+    // const sdk = new ThirdwebSDK(NETWORK,{
+    //   clientId:process.env.NEXT_PUBLIC_THIRDWEB_CLIENT_ID, // Use client id if using on the client side, get it from dashboa
+    // });
+    const sdk = ThirdwebSDK.fromSigner(signer,NETWORK, {
+      clientId: process.env.NEXT_PUBLIC_THIRDWEB_CLIENT_ID, // Use client id if using on the client side, get it from dashboard settings
+    });
+
+
+    const contract = await sdk.getContract(NFT_COLLECTION_ADDRESS);
+
+    const metadatas = [{
+      name: "Cool NFT2",
+      description: "This is a cool NFT2",
+      image: imagefile
+    }];
+
+    const results = await contract.erc721.lazyMint(metadatas); 
+    const firstTokenId = results[0].id;
+    const firstNFT = await results[0].data();
+    setNftTokenId(firstTokenId.toString());
+    setNftTokenData(JSON.stringify(firstNFT));
+   }
   return (
     <div>
       {/* Create Capture */}
@@ -185,6 +197,23 @@ const LumaAIApiForm: React.FC = () => {
           onClick={handlePinstaSubmit}>
           To Pinata
       </button>
+
+
+
+
+      <h2>NFTを作成する。</h2>
+
+      <button
+          onClick={handleMakeNFT}>
+          Make NFT
+      </button>
+
+
+
+      {/* const [nftTokenId, setNftTokenId] = useState<string>(""); // NFTのトークンIDを保持
+  const [nftTokendata, setNftTokenData] = useState<string>(""); // NFTのトークンURIを保持 */}
+      <h4>{nftTokenId}</h4>
+      <h4>{nftTokendata}</h4>
       {/* Success or Error Messages */}
       <h3>{message}</h3>
 
