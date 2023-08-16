@@ -158,10 +158,10 @@ const LumaAIApiForm: React.FC = () => {
       <input
         type="text"
         placeholder="Title"
-        value={title}
+        // value={title}
         onChange={(e) => setTitle(e.target.value)}
       />
-      <button onClick={handleCreateSubmit}>Submit</button>
+      {/* <button onClick={handleCreateSubmit}>Submit</button> */}
 
       {/* Upload Imagw */}
       <h2>Upload Thumbnail</h2>
@@ -176,25 +176,16 @@ const LumaAIApiForm: React.FC = () => {
         type="file"
         onChange={(e) => setVideoFile(e.target.files ? e.target.files[0] : null)}
       />
-      <button onClick={handleVideoUploadSubmit}>Upload</button>
+      {/* <button onClick={handleVideoUploadSubmit}>Upload</button> */}
 
 
-      {/* Trigger */}
+      {/* Trigger
       <h2>Trigger Capture</h2>
 
-      <button onClick={handleTriggerSubmit}>Trigger</button>
+      <button onClick={handleTriggerSubmit}>Trigger</button> */}
 
-      {/* Check and Download
-      <h2>Check and Download Capture</h2>
-      <input
-        type="text"
-        placeholder="Slug"
-        value={slug}
-        onChange={(e) => setSlug(e.target.value)}
-      />
-      <button onClick={handleCheckAndDownloadSubmit}>Check and Download</button>
-      <pre>{downloadData}</pre> */}
-      <br/>
+{/* これまだ消さないで */}
+      {/* <br/>
       <h2>Make Nerf Create Upload Trigger を順にすべて実行するボタン</h2>
 
       <button
@@ -208,7 +199,7 @@ const LumaAIApiForm: React.FC = () => {
           onClick={handlePinstaSubmit}>
           To Pinata
       </button>
-
+ */}
 
 
 
@@ -220,15 +211,15 @@ const LumaAIApiForm: React.FC = () => {
       </button>
 
 
-
+{/* ここら辺のコメントも消さないで */}
       {/* const [nftTokenId, setNftTokenId] = useState<string>(""); // NFTのトークンIDを保持
   const [nftTokendata, setNftTokenData] = useState<string>(""); // NFTのトークンURIを保持 */}
-      <h4>{nftTokenId}</h4>
-      <h4>{nftTokendata}</h4>
+      {/* <h4>{nftTokenId}</h4>
+      <h4>{nftTokendata}</h4> */}
       {/* Success or Error Messages */}
-      <h3>{message}</h3>
+      {/* <h3>{message}</h3> */}
 
-      {responseData && (
+      {/* {responseData && (
         <div>
           <h3>Response Data</h3>
           <pre>{JSON.stringify(responseData, null, 2)}</pre>
@@ -236,7 +227,7 @@ const LumaAIApiForm: React.FC = () => {
           <h4>{slug}</h4>
         </div>
 
-      )}
+      )} */}
     </div>
   );
 }
