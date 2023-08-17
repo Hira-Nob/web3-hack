@@ -11,6 +11,8 @@ import { NFT_COLLECTION_ADDRESS } from "../const/contractAddresses";
 import tokenPageStyles from "../styles/Token.module.css";
 import { NFT as NFTType } from "@thirdweb-dev/sdk";
 import SaleInfo from "../components/SaleInfo/SaleInfo";
+import LumaEmbed from "../components/LumaApi/LumaEnbed";
+import ImagePopup from "../components/PopUp/ImagePopup";
 
 export default function Sell() {
   // Load all of the NFTs from the NFT Collection
@@ -19,6 +21,11 @@ export default function Sell() {
   const { data, isLoading } = useOwnedNFTs(contract, address);
 
   const [selectedNft, setSelectedNft] = useState<NFTType>();
+
+  const [slug, setSlug] = useState<string>();
+  const [qrPath, setQRPath] = useState<string>();
+  // const slug = (selectedNft?.metadata?.attributes as Array<{ trait_type: string; value: string }>)[0]?.value;
+
 
   return (
     <Container maxWidth="lg">
@@ -31,6 +38,8 @@ export default function Sell() {
             isLoading={isLoading}
             overrideOnclickBehavior={(nft) => {
               setSelectedNft(nft);
+              setSlug((nft.metadata.attributes as Array<{ trait_type: string; value: string }>)[0]?.value);
+              setQRPath("/marker_"+(nft.metadata.attributes as Array<{ trait_type: string; value: string }>)[0]?.value+".png");
             }}
             emptyText={
               "Looks like you don't own any NFTs in this collection. Head to the buy page to buy some!"
@@ -41,10 +50,13 @@ export default function Sell() {
         <div className={tokenPageStyles.container} style={{ marginTop: 0 }}>
           <div className={tokenPageStyles.metadataContainer}>
             <div className={tokenPageStyles.imageContainer}>
-              <ThirdwebNftMedia
+              {/* <ThirdwebNftMedia
                 metadata={selectedNft.metadata}
                 className={tokenPageStyles.image}
-              />
+              /> */}
+              <LumaEmbed slug={slug!} />
+              <ImagePopup imageUrl={qrPath!} />
+              <p>{qrPath}</p>
               <button
                 onClick={() => {
                   setSelectedNft(undefined);
