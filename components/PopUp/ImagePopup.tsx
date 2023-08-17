@@ -32,7 +32,9 @@ const ImagePopup: React.FC<ImagePopupProps> = ({ imageUrl }) => {
             marginRight: '-50%',
             transform: 'translate(-50%, -50%)',
             background: 'none',
-            border: 'none'
+            border: 'none',
+            display: 'flex',          // 追加: フレックスボックスを使用
+            flexDirection: 'column' 
           },
           overlay: {
             backgroundColor: 'rgba(0, 0, 0, 0.5)'
@@ -40,7 +42,7 @@ const ImagePopup: React.FC<ImagePopupProps> = ({ imageUrl }) => {
         }}
       >
         <img src={imageUrl} alt="ポップアップ画像" style={{ maxWidth: '100%', maxHeight: '80vh' }} />
-        <button onClick={handleClose}>閉じる</button>
+        <button onClick={handleClose} style={{ flexGrow: 1, width: '100%', marginTop: '10px' }}>閉じる</button>
       </Modal>
     </div>
   );
