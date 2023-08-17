@@ -23,6 +23,7 @@ import randomColor from "../../../util/randomColor";
 import Skeleton from "../../../components/Skeleton/Skeleton";
 import toast, { Toaster } from "react-hot-toast";
 import toastStyle from "../../../util/toastConfig";
+import LumaEmbed from "../../../components/LumaApi/LumaEnbed";
 
 type Props = {
   nft: NFT;
@@ -33,6 +34,8 @@ const [randomColor1, randomColor2] = [randomColor(), randomColor()];
 
 export default function TokenPage({ nft, contractMetadata }: Props) {
   const [bidValue, setBidValue] = useState<string>();
+
+  const slug = (nft?.metadata?.attributes as Array<{ trait_type: string; value: string }>)[0]?.value;
 
   // Connect to marketplace smart contract
   const { contract: marketplace, isLoading: loadingContract } = useContract(
@@ -120,29 +123,31 @@ export default function TokenPage({ nft, contractMetadata }: Props) {
       <Container maxWidth="lg">
         <div className={styles.container}>
           <div className={styles.metadataContainer}>
-            <ThirdwebNftMedia
+            {/* <ThirdwebNftMedia
               metadata={nft.metadata}
               className={styles.image}
-            />
-
+            /> */}
+            <LumaEmbed slug="fb9f752f-3da2-49ed-b572-0a18b5208ba5" />
             <div className={styles.descriptionContainer}>
               <h3 className={styles.descriptionTitle}>Description</h3>
               <p className={styles.description}>{nft.metadata.description}</p>
+              <p>{ slug}</p>
 
+          
               <h3 className={styles.descriptionTitle}>Traits</h3>
 
+
               <div className={styles.traitsContainer}>
-                {Object.entries(nft?.metadata?.attributes || {}).map(
-                  ([key, value]) => (
-                    <div className={styles.traitContainer} key={key}>
-                      <p className={styles.traitName}>{key}</p>
-                      <p className={styles.traitValue}>
-                        {value?.toString() || ""}
-                      </p>
-                    </div>
-                  )
-                )}
+                {(nft?.metadata?.attributes as Array<{ trait_type: string; value: string }> || []).map((attribute, index) => (
+                  <div className={styles.traitContainer} key={index}>
+                    <p className={styles.traitName}>{attribute.trait_type}</p>
+                    <p className={styles.traitValue}>
+                      {attribute.value?.toString() || ""}
+                    </p>
+                  </div>
+                ))}
               </div>
+              
 
               <h3 className={styles.descriptionTitle}>History</h3>
 
