@@ -15,7 +15,12 @@ html {
 
 body {
   color: #ffffff;
-  background: #191c1f;
+  /* background: #191c1f; */
+  /* background: #6ebae0; */
+  /* background-image:url(../public/1_gradients.jpg);
+  background-size:3357px auto; */
+  background: linear-gradient(#63BBE7, #faeef8);
+  
   --color-primary: #fada3f;
   --color-secondary: #ff2136;
   --color-tertiary: #0294fe;
