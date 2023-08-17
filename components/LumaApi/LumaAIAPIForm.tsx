@@ -5,7 +5,7 @@ import LumaEmbed from './LumaEnbed';
 import { ThirdwebSDK } from '@thirdweb-dev/sdk';
 import { NETWORK, NFT_COLLECTION_ADDRESS } from '../../const/contractAddresses';
 import { Wallet } from 'ethers';
-import styles from "./LumaAPIStyle.css";
+import styles from 'LumaAPI.module.css';
 
 const LumaAIApiForm: React.FC = () => {
   const [title, setTitle] = useState<string>('default title');
