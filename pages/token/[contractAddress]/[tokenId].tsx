@@ -24,6 +24,8 @@ import Skeleton from "../../../components/Skeleton/Skeleton";
 import toast, { Toaster } from "react-hot-toast";
 import toastStyle from "../../../util/toastConfig";
 import LumaEmbed from "../../../components/LumaApi/LumaEnbed";
+import Modal from 'react-modal';
+import ImagePopup from "../../../components/PopUp/ImagePopup";
 
 type Props = {
   nft: NFT;
@@ -37,6 +39,7 @@ export default function TokenPage({ nft, contractMetadata }: Props) {
 
   const slug = (nft?.metadata?.attributes as Array<{ trait_type: string; value: string }>)[0]?.value;
 
+  const qrPath= "/marker_"+slug+".png"
   // Connect to marketplace smart contract
   const { contract: marketplace, isLoading: loadingContract } = useContract(
     MARKETPLACE_ADDRESS,
@@ -127,6 +130,7 @@ export default function TokenPage({ nft, contractMetadata }: Props) {
               metadata={nft.metadata}
               className={styles.image}
             /> */}
+          
             <LumaEmbed slug= {slug} />
             <div className={styles.descriptionContainer}>
               <h3 className={styles.descriptionTitle}>Description</h3>
@@ -147,6 +151,7 @@ export default function TokenPage({ nft, contractMetadata }: Props) {
               </div>
                */}
 
+              <ImagePopup imageUrl={qrPath} />
               <h3 className={styles.descriptionTitle}>History</h3>
 
               <div className={styles.traitsContainer}>
