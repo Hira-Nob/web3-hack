@@ -5,6 +5,7 @@ import LumaEmbed from './LumaEnbed';
 import { ThirdwebSDK } from '@thirdweb-dev/sdk';
 import { NETWORK, NFT_COLLECTION_ADDRESS } from '../../const/contractAddresses';
 import { Wallet } from 'ethers';
+import styles from "./LumaAPIStyle.css";
 
 const LumaAIApiForm: React.FC = () => {
   const [title, setTitle] = useState<string>('default title');
@@ -154,7 +155,8 @@ const LumaAIApiForm: React.FC = () => {
   return (
     <div>
       {/* Create Capture */}
-      <h2>Create Capture</h2>
+      <h2 className={styles.TitleLabel}>Create Capture</h2>
+      {/* <h2>Create Capture</h2> */}
       <input
         type="text"
         placeholder="Title"

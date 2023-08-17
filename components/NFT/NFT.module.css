@@ -1,9 +1,9 @@
 .nftImage {
   /* Override default NFT renderer width */
-  width: 100% !important;
-  border-radius: 8px;
-  background: rgba(255, 255, 255, 0.04);
-  object-fit: cover;
+  height: 70% !important;
+  width: 70% !important;
+  background: rgba(255, 255, 255, 0.01);
+  margin: 0 auto; /*中央*/
 }
 
 .nftTokenId {
@@ -24,30 +24,30 @@
   line-height: 22px;
   font-weight: 700;
   margin: 0px;
-  margin-bottom: 12px;
-  margin-top: 4px;
+  margin-bottom: 4px;
+  margin-top: 2px;
+  text-align: center;
 }
 
 .priceContainer {
   display: flex;
+  margin: 0 auto; /*中央*/
   width: 100%;
   gap: 8px;
   flex-direction: row;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
-  border-radius: 8px;
-  background: rgba(255, 255, 255, 0.04);
+  background: rgba(255, 255, 255, 0.2);
   min-height: 52px;
 }
 
 .nftPriceContainer {
-  width: 100%;
+  width: 70px; /*ハードコーディング*/
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
+  /* justify-content: space-between;
   align-items: center;
-  margin-left: 8px;
-  margin-right: 8px;
+  text-align: center; */
 }
 
 .nftPriceLabel {
@@ -61,6 +61,7 @@
   line-height: 20px;
   font-weight: 500;
   color: rgba(255, 255, 255, 0.6);
+  text-align: center;
 }
 
 .nftPriceValue {
@@ -70,6 +71,7 @@
   max-width: 100%;
   font-family: inherit;
   vertical-align: inherit;
+  text-align: center;
   font-size: 13px;
   line-height: 20px;
   font-weight: 500;
