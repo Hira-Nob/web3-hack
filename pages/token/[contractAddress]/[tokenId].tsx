@@ -127,7 +127,7 @@ export default function TokenPage({ nft, contractMetadata }: Props) {
               metadata={nft.metadata}
               className={styles.image}
             /> */}
-            <LumaEmbed slug="fb9f752f-3da2-49ed-b572-0a18b5208ba5" />
+            <LumaEmbed slug= {slug} />
             <div className={styles.descriptionContainer}>
               <h3 className={styles.descriptionTitle}>Description</h3>
               <p className={styles.description}>{nft.metadata.description}</p>
