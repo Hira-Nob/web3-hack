@@ -28,7 +28,7 @@ export default function NFTGrid({
           </div>
         ))
       ) : data && data.length > 0 ? (
-        data.map((nft) =>
+        [...data].reverse().map((nft) =>
           !overrideOnclickBehavior ? (
             <Link
               href={`/token/${NFT_COLLECTION_ADDRESS}/${nft.metadata.id}`}
