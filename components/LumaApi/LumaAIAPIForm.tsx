@@ -6,21 +6,30 @@ import { ThirdwebSDK } from '@thirdweb-dev/sdk';
 import { NETWORK, NFT_COLLECTION_ADDRESS } from '../../const/contractAddresses';
 import { Wallet } from 'ethers';
 import styles from './LumaAPI.module.css';
+import toast, { Toaster } from 'react-hot-toast';
+import toastStyle from '../../util/toastConfig';
+import { useRouter } from 'next/router';
 
 const LumaAIApiForm: React.FC = () => {
   const [title, setTitle] = useState<string>('default title');
   const [uploadURL, setUploadURL] = useState<string>('');
   const [slug, setSlug] = useState<string>('default slug');
   const [message, setMessage] = useState<string>('');
+  const [description, setDescription] = useState<string>('');
   const [downloadData, setDownloadData] = useState<string>('');
   const [responseData, setResponseData] = useState<any>(null);  // Add this line for response data
   const [videofile, setVideoFile] = useState<File | null>(null);
-  const [imagefile, setImageFile] = useState<File | null>(null);
+  const [imageFile, setImageFile] = useState<File | null>(null);
   const apiClient = new LumaAIApiClient(process.env.NEXT_PUBLIC_LUMAAI_API_KEY || '');
   const [imageIpfsHash, setImageIpfsHash] = useState<string>(""); // 画像のIPFSハッシュを保持
   const [metaIpfsHash, setMetaIpfsHash] = useState<string>(""); // メタデータのIPFSハッシュを保持
   const [nftTokenId, setNftTokenId] = useState<string>(""); // NFTのトークンIDを保持
   const [nftTokendata, setNftTokenData] = useState<string>(""); // NFTのトークンURIを保持
+  const router = useRouter();
+
+  const defaultFileName="0_iCon_256.png"
+  const  defaultImagePath="/"+defaultFileName;
+
 
   const handleCreateSubmit = async () => {
     try {
@@ -71,7 +80,7 @@ const LumaAIApiForm: React.FC = () => {
 
   const handlePinstaSubmit = async () => {
     const formData = new FormData();
-    formData.append("file", imagefile!);
+    formData.append("file", imageFile!);
     const response = await fetch("https://api.pinata.cloud/pinning/pinFileToIPFS", {
       method: "POST",
       headers: {
@@ -117,7 +126,7 @@ const LumaAIApiForm: React.FC = () => {
    const handleMakeNFT = async () => {
     const validPrivateKey = process.env.NEXT_PUBLIC_PRIVATE_KEY; // サンプルキー
     const signer = new Wallet(validPrivateKey!);
-    // 10d77ba769f7b80ed47e289e13947b9de4c870b93910a7d0c49f38248494b8a6
+
     
     // const sdk = new ThirdwebSDK(NETWORK,{
     //   clientId:process.env.NEXT_PUBLIC_THIRDWEB_CLIENT_ID, // Use client id if using on the client side, get it from dashboa
@@ -126,17 +135,34 @@ const LumaAIApiForm: React.FC = () => {
       clientId: process.env.NEXT_PUBLIC_THIRDWEB_CLIENT_ID, // Use client id if using on the client side, get it from dashboard settings
     });
 
-
     const contract = await sdk.getContract(NFT_COLLECTION_ADDRESS);
+
+    let imageData:File;
+
+    if (!imageFile) {
+      // デフォルトの画像をblobとして取得
+      const response = await fetch(defaultImagePath);
+      const blob: Blob = await response.blob();
+
+      // blobをFileオブジェクトに変換
+      imageData = new File([blob], defaultFileName, {
+      type: blob.type,
+      lastModified: new Date().getTime()
+    });
+    } else {
+      // ユーザーが選択した画像をそのまま使用
+      imageData = imageFile;
+    }
+  
 
     const metadatas = [{
       name: title,
-      description: "This is a Good NFT",
+      description: description,
       attributes: [{
         trait_type: "slug",
         value: slug
       }],
-      image: imagefile
+      image: imageData
     }];
 
     const results = await contract.erc721.lazyMint(metadatas); 
@@ -151,7 +177,26 @@ const LumaAIApiForm: React.FC = () => {
     // const claimedTokenId = tx.id; // the id of the NFT claimed
     // const claimedNFT = await tx.data(); // (optional) get the claimed NFT metadata
 
-   }
+
+    toast(`Success!`, {
+      icon: "✅",
+      style: toastStyle,
+      position: "bottom-center",
+    });
+
+// 　　トーストを出現させた1秒後にリダイレクトさせるように変更
+    setTimeout(() => {
+      router.push('/buy');
+    }, 1000);
+
+
+
+   };
+
+
+
+
+
   return (
     <div>
       {/* Create Capture */}
@@ -162,6 +207,14 @@ const LumaAIApiForm: React.FC = () => {
         placeholder="Title"
         // value={title}
         onChange={(e) => setTitle(e.target.value)}
+      />
+
+      <h2 className={styles.TitleLabel}>Step2: Descriptionを入力</h2>
+      <input className={styles.inptStyle}
+        type="text"
+        placeholder="Description"
+        // value={title}
+        onChange={(e) => setDescription(e.target.value)}
       />
       {/* <button onClick={handleCreateSubmit}>Submit</button> */}
 
@@ -215,6 +268,7 @@ const LumaAIApiForm: React.FC = () => {
           onClick={handleMakeNFT}>
           Make NFT
       </button>
+      <Toaster position="bottom-center" reverseOrder={false} />
 
 
 {/* ここら辺のコメントも消さないで */}
