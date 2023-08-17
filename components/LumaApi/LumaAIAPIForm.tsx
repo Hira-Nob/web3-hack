@@ -5,7 +5,7 @@ import LumaEmbed from './LumaEnbed';
 import { ThirdwebSDK } from '@thirdweb-dev/sdk';
 import { NETWORK, NFT_COLLECTION_ADDRESS } from '../../const/contractAddresses';
 import { Wallet } from 'ethers';
-import styles from 'LumaAPI.module.css';
+import styles from './LumaAPI.module.css';
 
 const LumaAIApiForm: React.FC = () => {
   const [title, setTitle] = useState<string>('default title');
@@ -155,9 +155,9 @@ const LumaAIApiForm: React.FC = () => {
   return (
     <div>
       {/* Create Capture */}
-      <h2 className={styles.TitleLabel}>Create Capture</h2>
       {/* <h2>Create Capture</h2> */}
-      <input
+      <h2 className={styles.TitleLabel}>Step1: NFTのタイトルを入力</h2>
+      <input className={styles.inptStyle}
         type="text"
         placeholder="Title"
         // value={title}
@@ -166,15 +166,18 @@ const LumaAIApiForm: React.FC = () => {
       {/* <button onClick={handleCreateSubmit}>Submit</button> */}
 
       {/* Upload Imagw */}
-      <h2>Upload Thumbnail</h2>
-      <input
+      {/* <h2>Upload Thumbnail</h2> */}
+      <h2 className={styles.TitleLabel}>(デモ時は隠す) Upload Thumbnail</h2>
+      <input className={styles.FileSelStyle}
         type="file"
         onChange={(e) => setImageFile(e.target.files ? e.target.files[0] : null)}
       />
+      
 
       {/* Upload Video */}
-      <h2>Upload Video</h2>
-      <input
+      {/* <h2>Upload Video</h2> */}
+      <h2 className={styles.TitleLabel}>Step2: 動画をアップロード</h2>
+      <input className={styles.FileSelStyle}
         type="file"
         onChange={(e) => setVideoFile(e.target.files ? e.target.files[0] : null)}
       />
@@ -205,9 +208,10 @@ const LumaAIApiForm: React.FC = () => {
 
 
 
-      <h2>NFTを作成する。</h2>
+      {/* <h2>NFTを作成する。</h2> */}
+      <h2 className={styles.TitleLabel}>(デモ時は隠す) NFTを作成</h2>
 
-      <button
+      <button className={styles.BtnStyle}
           onClick={handleMakeNFT}>
           Make NFT
       </button>
