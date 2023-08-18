@@ -153,7 +153,7 @@ export default function TokenPage({ nft, contractMetadata }: Props) {
                */}
 
               <ImagePopup imageUrl={qrPath} />
-              <h3 className={styles.descriptionTitle}>History</h3>
+              <h3 className={styles.descriptionTitle}>履歴</h3>
 
               <div className={styles.traitsContainer}>
                 {transferEvents?.map((event, index) => (
@@ -239,7 +239,7 @@ export default function TokenPage({ nft, contractMetadata }: Props) {
             <div className={styles.pricingContainer}>
               {/* Pricing information */}
               <div className={styles.pricingInfo}>
-                <p className={styles.label}>Price</p>
+                <p className={styles.label}>価格</p>
                 <div className={styles.pricingValue}>
                   {loadingContract || loadingDirect || loadingAuction ? (
                     <Skeleton width="120" height="24" />
@@ -256,7 +256,7 @@ export default function TokenPage({ nft, contractMetadata }: Props) {
                           {" " + auctionListing[0]?.buyoutCurrencyValue.symbol}
                         </>
                       ) : (
-                        "Not for sale"
+                        "非売品"
                       )}
                     </>
                   )}
@@ -312,7 +312,7 @@ export default function TokenPage({ nft, contractMetadata }: Props) {
                     });
                   }}
                 >
-                  Buy at asking price
+                  希望価格で購入
                 </Web3Button>
 
                 <div className={`${styles.listingTimeContainer} ${styles.or}`}>
@@ -352,7 +352,7 @@ export default function TokenPage({ nft, contractMetadata }: Props) {
                     });
                   }}
                 >
-                  Place bid
+                  入札を行う
                 </Web3Button>
               </>
             )}
