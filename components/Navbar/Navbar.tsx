@@ -19,19 +19,19 @@ export function Navbar() {
               src="/0_iCon_256.png"
               width={48}
               height={48}
-              alt="NFT marketplace sample logo"
+              alt="3D NFT marketplace"
             />
           </Link>
 
           <div className={styles.navMiddle}>
             <Link href="/buy" className={styles.link}>
-              Buy
+              買う
             </Link>
             <Link href="/sell" className={styles.link}>
-              Sell
+              売る
             </Link>
             <Link href="/mint" className={styles.link}>
-              Mint
+              3D NFTを生成
             </Link>
           </div>
         </div>
