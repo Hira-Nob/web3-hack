@@ -1,0 +1,16 @@
+/* styles.module.css */
+.dropzone {
+  border: 2px dashed #cccccc;
+  padding: 20px;
+  text-align: center;
+  cursor: pointer;
+  transition: background-color 0.2s ease-in-out;
+  /* ...他のスタイル... */
+  width: 300px;    /* 任意の幅に設定 */
+  max-width: 100%; /* 必要に応じて最大幅を設定 */
+  margin: 0;       /* 左寄せのためのスタイル変更 */
+}
+
+.dropzone:hover {
+  background-color: #666060;
+}
