@@ -56,7 +56,7 @@ export default function Sell() {
               /> */}
               <LumaEmbed slug={slug!} />
               <ImagePopup imageUrl={qrPath!} />
-              <p>{qrPath}</p>
+              {/* <p>{qrPath}</p> */}
               <button
                 onClick={() => {
                   setSelectedNft(undefined);
