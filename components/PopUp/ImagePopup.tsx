@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import Modal from 'react-modal';
+import styles from "./Image.module.css";
 
 interface ImagePopupProps {
   imageUrl: string;
@@ -18,7 +19,7 @@ const ImagePopup: React.FC<ImagePopupProps> = ({ imageUrl }) => {
 
   return (
     <div>
-      <button onClick={handleOpen}>ARで見る</button>
+      <button className={styles.BtnStyle} onClick={handleOpen}>ARで見る</button>
       <Modal
         isOpen={isOpen}
         onRequestClose={handleClose}

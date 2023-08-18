@@ -13,8 +13,8 @@ export default function Mint() {
 
   return (
     <Container maxWidth="lg">
-      <h1>Mint NFTs</h1>
-      <p>動画から3D NFTを生成</p>
+      <h1>3D NFTを生成</h1>
+      <p>動画から3D NFTを生成する</p>
       <LumaAIApiForm />
       {/* <LumaEmbed  slug="d2d2badd-8bdd-4874-84f7-9df2aae27f29" /> */}
     </Container>

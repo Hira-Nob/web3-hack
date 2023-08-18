@@ -185,9 +185,9 @@ const LumaAIApiForm: React.FC = () => {
       position: "bottom-center",
     });
 
-// 　　トーストを出現させた1秒後にリダイレクトさせるように変更
+//  トーストを出現させた1秒後にリダイレクトさせるように変更
     setTimeout(() => {
-      router.push('/buy');
+      router.push('/sell');
     }, 1000);
 
 
@@ -202,18 +202,18 @@ const LumaAIApiForm: React.FC = () => {
     <div>
       {/* Create Capture */}
       {/* <h2>Create Capture</h2> */}
-      <h2 className={styles.TitleLabel}>Step1: NFTのタイトルを入力</h2>
+      <h2 className={styles.TitleLabel}>1. NFTのタイトルを入力</h2>
       <input className={styles.inptStyle}
         type="text"
-        placeholder="Title"
+        placeholder="タイトル"
         // value={title}
         onChange={(e) => setTitle(e.target.value)}
       />
 
-      <h2 className={styles.TitleLabel}>Step2: Descriptionを入力</h2>
+      <h2 className={styles.TitleLabel}>2. NFTの説明を入力</h2>
       <input className={styles.inptStyle}
         type="text"
-        placeholder="Description"
+        placeholder="説明"
         // value={title}
         onChange={(e) => setDescription(e.target.value)}
       />
@@ -230,11 +230,7 @@ const LumaAIApiForm: React.FC = () => {
 
       {/* Upload Video */}
       {/* <h2>Upload Video</h2> */}
-      <h2 className={styles.TitleLabel}>Step3: 動画をアップロード</h2>
-      {/* <input className={styles.FileSelStyle}
-        type="file"
-        onChange={(e) => setVideoFile(e.target.files ? e.target.files[0] : null)}
-      /> */}
+      <h2 className={styles.TitleLabel}>3. 3D NFT化する動画をアップロード</h2>
       <VideoUpload onFileChange={setVideoFile} />
 
       {/* <button onClick={handleVideoUploadSubmit}>Upload</button> */}
@@ -265,11 +261,11 @@ const LumaAIApiForm: React.FC = () => {
 
 
       {/* <h2>NFTを作成する。</h2> */}
-      <h2 className={styles.TitleLabel}>Step4: NFTを作成</h2>
+      <h2 className={styles.TitleLabel}>4. NFTを作成</h2>
 
       <button className={styles.BtnStyle}
           onClick={handleMakeNFT}>
-          Make NFT
+          3D NFTを生成
       </button>
       <Toaster position="bottom-center" reverseOrder={false} />
 

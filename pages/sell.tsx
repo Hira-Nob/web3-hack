@@ -29,10 +29,10 @@ export default function Sell() {
 
   return (
     <Container maxWidth="lg">
-      <h1>Sell NFTs</h1>
+      <h1>NFTを売る</h1>
       {!selectedNft ? (
         <>
-          <p>Select which NFT you&rsquo;d like to sell below.</p>
+          <p>以下から販売したいNFTを選んでください。</p>
           <NFTGrid
             data={data}
             isLoading={isLoading}
@@ -42,7 +42,7 @@ export default function Sell() {
               setQRPath("/marker_"+(nft.metadata.attributes as Array<{ trait_type: string; value: string }>)[0]?.value+".png");
             }}
             emptyText={
-              "Looks like you don't own any NFTs in this collection. Head to the buy page to buy some!"
+              "-- あなたはNFTを所有していないようです。NFTを生成するかNFTを購入してください。 --"
             }
           />
         </>

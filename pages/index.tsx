@@ -55,8 +55,8 @@ const Home: NextPage = () => {
               </p>
 
               <div className={styles.heroCtaContainer}>
-                <Link className={styles.heroCta} href="/buy">
-                  Get Started
+                <Link className={styles.heroCta} href="/mint">
+                  さぁ、始めよう。
                 </Link>
                 {/* <Link
                   className={styles.secondaryCta}

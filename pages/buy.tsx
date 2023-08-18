@@ -11,13 +11,13 @@ export default function Buy() {
 
   return (
     <Container maxWidth="lg">
-      <h1>NFTを購入</h1>
+      <h1>NFTを買う</h1>
       {/* <p>Browse which NFTs are available from the collection.</p> */}
       <NFTGrid
         data={data}
         isLoading={isLoading}
         emptyText={
-          "Looks like there are no NFTs in this collection. Did you import your contract on the thirdweb dashboard? https://thirdweb.com/dashboard"
+          "このマーケットにはNFTが存在しないようです。"
         }
       />
     </Container>
