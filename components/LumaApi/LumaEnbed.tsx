@@ -5,8 +5,8 @@ const LumaEmbed: React.FC <{slug:string}> = ({slug}) => {
     return (
       <iframe
         src={src}
-        width="889"
-        height="500"
+        width="900"
+        height="700"
         frameBorder="0"
         title="luma embed"
         style={{ border: "none" }}

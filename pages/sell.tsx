@@ -56,7 +56,7 @@ export default function Sell() {
               /> */}
               <LumaEmbed slug={slug!} />
               <ImagePopup imageUrl={qrPath!} />
-              <p>{qrPath}</p>
+              {/* <p>{qrPath}</p> */}
               <button
                 onClick={() => {
                   setSelectedNft(undefined);
@@ -69,7 +69,7 @@ export default function Sell() {
           </div>
 
           <div className={tokenPageStyles.listingContainer}>
-            <p>You&rsquo;re about to list the following item for sale.</p>
+            <p>次の商品を出品します。</p>
             <h1 className={tokenPageStyles.title}>
               {selectedNft.metadata.name}
             </h1>

@@ -9,11 +9,13 @@ import styles from './LumaAPI.module.css';
 import toast, { Toaster } from 'react-hot-toast';
 import toastStyle from '../../util/toastConfig';
 import { useRouter } from 'next/router';
+import { VideoUpload } from '../VideoUpload/VideoUpload';
 
 const LumaAIApiForm: React.FC = () => {
   const [title, setTitle] = useState<string>('default title');
   const [uploadURL, setUploadURL] = useState<string>('');
-  const [slug, setSlug] = useState<string>('default slug');
+  const defultSlug="9ce96655-4965-404d-bc00-d0595283d286";
+  const [slug, setSlug] = useState<string>(defultSlug);
   const [message, setMessage] = useState<string>('');
   const [description, setDescription] = useState<string>('');
   const [downloadData, setDownloadData] = useState<string>('');
@@ -27,7 +29,7 @@ const LumaAIApiForm: React.FC = () => {
   const [nftTokendata, setNftTokenData] = useState<string>(""); // NFTのトークンURIを保持
   const router = useRouter();
 
-  const defaultFileName="0_iCon_256.png"
+  const defaultFileName="silver.png"
   const  defaultImagePath="/"+defaultFileName;
 
 
@@ -230,10 +232,8 @@ const LumaAIApiForm: React.FC = () => {
       {/* Upload Video */}
       {/* <h2>Upload Video</h2> */}
       <h2 className={styles.TitleLabel}>3. 3D NFT化する動画をアップロード</h2>
-      <input className={styles.FileSelStyle}
-        type="file"
-        onChange={(e) => setVideoFile(e.target.files ? e.target.files[0] : null)}
-      />
+      <VideoUpload onFileChange={setVideoFile} />
+
       {/* <button onClick={handleVideoUploadSubmit}>Upload</button> */}
 
 

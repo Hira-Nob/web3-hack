@@ -38,7 +38,7 @@ const Home: NextPage = () => {
             <div className={styles.heroBody}>
               <h1 className={styles.heroTitle}>
                 <span className={styles.heroTitleGradient}>
-                  IWASE 3D NFT Marketplaces
+                3D <span className={styles.highlight}>N</span>er<span className={styles.highlight}>F</span> marke<span className={styles.highlight}>T</span>
                 </span>
                 <br />
               </h1>

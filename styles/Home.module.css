@@ -93,6 +93,9 @@
   padding-right: 12px;
   font-weight: 700;
 }
+.highlight {
+  color: rgb(132, 194, 227);  /* 色はこちらで調整することができます。 */
+}
 
 .heroSubtitle {
   max-width: 640px;
