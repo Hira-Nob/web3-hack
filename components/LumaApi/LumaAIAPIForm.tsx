@@ -9,6 +9,7 @@ import styles from './LumaAPI.module.css';
 import toast, { Toaster } from 'react-hot-toast';
 import toastStyle from '../../util/toastConfig';
 import { useRouter } from 'next/router';
+import { VideoUpload } from '../VideoUpload/VideoUpload';
 
 const LumaAIApiForm: React.FC = () => {
   const [title, setTitle] = useState<string>('default title');
@@ -230,10 +231,12 @@ const LumaAIApiForm: React.FC = () => {
       {/* Upload Video */}
       {/* <h2>Upload Video</h2> */}
       <h2 className={styles.TitleLabel}>Step3: 動画をアップロード</h2>
-      <input className={styles.FileSelStyle}
+      {/* <input className={styles.FileSelStyle}
         type="file"
         onChange={(e) => setVideoFile(e.target.files ? e.target.files[0] : null)}
-      />
+      /> */}
+      <VideoUpload onFileChange={setVideoFile} />
+
       {/* <button onClick={handleVideoUploadSubmit}>Upload</button> */}
 
 
