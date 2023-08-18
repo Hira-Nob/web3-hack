@@ -152,14 +152,14 @@ export default function SaleInfo({ nft }: Props) {
         ${tab === "direct" ? profileStyles.activeTab : ""}`}
             onClick={() => setTab("direct")}
           >
-            Direct
+            出品
           </h3>
           <h3
             className={`${profileStyles.tab} 
         ${tab === "auction" ? profileStyles.activeTab : ""}`}
             onClick={() => setTab("auction")}
           >
-            Auction
+            オークション
           </h3>
         </div>
 
@@ -172,10 +172,10 @@ export default function SaleInfo({ nft }: Props) {
           }`}
           style={{ flexDirection: "column" }}
         >
-          <h4 className={styles.formSectionTitle}>When </h4>
+          <h4 className={styles.formSectionTitle}>販売期間 </h4>
 
           {/* Input field for auction start date */}
-          <legend className={styles.legend}> Listing Starts on </legend>
+          <legend className={styles.legend}> 開始 </legend>
           <input
             className={styles.input}
             type="datetime-local"
@@ -184,17 +184,17 @@ export default function SaleInfo({ nft }: Props) {
           />
 
           {/* Input field for auction end date */}
-          <legend className={styles.legend}> Listing Ends on </legend>
+          <legend className={styles.legend}> 終了</legend>
           <input
             className={styles.input}
             type="datetime-local"
             {...registerDirect("endDate")}
             aria-label="Auction End Date"
           />
-          <h4 className={styles.formSectionTitle}>Price </h4>
+          <h4 className={styles.formSectionTitle}>価格 </h4>
 
           {/* Input field for buyout price */}
-          <legend className={styles.legend}> Price per token</legend>
+          <legend className={styles.legend}> 価格/Token</legend>
           <input
             className={styles.input}
             type="number"
@@ -225,7 +225,7 @@ export default function SaleInfo({ nft }: Props) {
               );
             }}
           >
-            Create Direct Listing
+            出品する
           </Web3Button>
         </div>
 
@@ -238,10 +238,10 @@ export default function SaleInfo({ nft }: Props) {
           }`}
           style={{ flexDirection: "column" }}
         >
-          <h4 className={styles.formSectionTitle}>When </h4>
+          <h4 className={styles.formSectionTitle}>販売期間 </h4>
 
           {/* Input field for auction start date */}
-          <legend className={styles.legend}> Auction Starts on </legend>
+          <legend className={styles.legend}> 開始 </legend>
           <input
             className={styles.input}
             type="datetime-local"
@@ -250,17 +250,17 @@ export default function SaleInfo({ nft }: Props) {
           />
 
           {/* Input field for auction end date */}
-          <legend className={styles.legend}> Auction Ends on </legend>
+          <legend className={styles.legend}> 終了 </legend>
           <input
             className={styles.input}
             type="datetime-local"
             {...registerAuction("endDate")}
             aria-label="Auction End Date"
           />
-          <h4 className={styles.formSectionTitle}>Price </h4>
+          <h4 className={styles.formSectionTitle}>価格 </h4>
 
           {/* Input field for minimum bid price */}
-          <legend className={styles.legend}> Allow bids starting from </legend>
+          <legend className={styles.legend}> 入札最低額 </legend>
           <input
             className={styles.input}
             step={0.000001}
@@ -269,7 +269,7 @@ export default function SaleInfo({ nft }: Props) {
           />
 
           {/* Input field for buyout price */}
-          <legend className={styles.legend}> Buyout price </legend>
+          <legend className={styles.legend}> 即決価格 </legend>
           <input
             className={styles.input}
             type="number"
@@ -300,7 +300,7 @@ export default function SaleInfo({ nft }: Props) {
               );
             }}
           >
-            Create Auction Listing
+            出品する
           </Web3Button>
         </div>
       </div>
