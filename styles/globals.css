@@ -1,8 +1,14 @@
+@import url('https://fonts.googleapis.com/css2?family=Kosugi+Maru&display=swap'); /* 'Kosugi Maru' */
+@import url('https://fonts.googleapis.com/css2?family=Kiwi+Maru&family=Kosugi+Maru&display=swap'); /* 'Kiwi Maru' */
+@import url('https://fonts.googleapis.com/css2?family=Kiwi+Maru&family=Klee+One&family=Kosugi+Maru&display=swap'); /* 'Klee One' */
+
 html,
 body {
   padding: 0;
   margin: 0;
-  font-family: Inter, Helvetica, Arial, sans-serif;
+  /* font-family: 'Kosugi Maru', Inter, Helvetica, Arial, sans-serif; */
+  /* font-family: 'Kiwi Maru', Inter, Helvetica, Arial, sans-serif; */
+  font-family: 'Klee One', Inter, Helvetica, Arial, sans-serif;
 }
 
 * {
@@ -19,7 +25,7 @@ body {
   /* background: #6ebae0; */
   /* background-image:url(../public/1_gradients.jpg);
   background-size:3357px auto; */
-  background: linear-gradient(#63BBE7, #faeef8);
+  background: linear-gradient(to right, #63BBE7, #fde2fa);
   
   --color-primary: #fada3f;
   --color-secondary: #ff2136;
