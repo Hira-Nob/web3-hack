@@ -14,7 +14,8 @@ import { VideoUpload } from '../VideoUpload/VideoUpload';
 const LumaAIApiForm: React.FC = () => {
   const [title, setTitle] = useState<string>('default title');
   const [uploadURL, setUploadURL] = useState<string>('');
-  const [slug, setSlug] = useState<string>('default slug');
+  const defultSlug="9ce96655-4965-404d-bc00-d0595283d286";
+  const [slug, setSlug] = useState<string>(defultSlug);
   const [message, setMessage] = useState<string>('');
   const [description, setDescription] = useState<string>('');
   const [downloadData, setDownloadData] = useState<string>('');
@@ -28,7 +29,7 @@ const LumaAIApiForm: React.FC = () => {
   const [nftTokendata, setNftTokenData] = useState<string>(""); // NFTのトークンURIを保持
   const router = useRouter();
 
-  const defaultFileName="0_iCon_256.png"
+  const defaultFileName="silver.png"
   const  defaultImagePath="/"+defaultFileName;
 
 
