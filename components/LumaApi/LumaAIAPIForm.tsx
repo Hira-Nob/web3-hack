@@ -220,16 +220,16 @@ const LumaAIApiForm: React.FC = () => {
 
       {/* Upload Imagw */}
       {/* <h2>Upload Thumbnail</h2> */}
-      <h2 className={styles.TitleLabel}>(デモ時は隠す) Upload Thumbnail</h2>
+      {/* <h2 className={styles.TitleLabel}>(デモ時は隠す) Upload Thumbnail</h2>
       <input className={styles.FileSelStyle}
         type="file"
         onChange={(e) => setImageFile(e.target.files ? e.target.files[0] : null)}
-      />
+      /> */}
       
 
       {/* Upload Video */}
       {/* <h2>Upload Video</h2> */}
-      <h2 className={styles.TitleLabel}>Step2: 動画をアップロード</h2>
+      <h2 className={styles.TitleLabel}>Step3: 動画をアップロード</h2>
       <input className={styles.FileSelStyle}
         type="file"
         onChange={(e) => setVideoFile(e.target.files ? e.target.files[0] : null)}
@@ -262,7 +262,7 @@ const LumaAIApiForm: React.FC = () => {
 
 
       {/* <h2>NFTを作成する。</h2> */}
-      <h2 className={styles.TitleLabel}>(デモ時は隠す) NFTを作成</h2>
+      <h2 className={styles.TitleLabel}>Step4: NFTを作成</h2>
 
       <button className={styles.BtnStyle}
           onClick={handleMakeNFT}>

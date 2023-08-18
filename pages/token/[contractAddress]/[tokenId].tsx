@@ -133,7 +133,8 @@ export default function TokenPage({ nft, contractMetadata }: Props) {
           
             <LumaEmbed slug= {slug} />
             <div className={styles.descriptionContainer}>
-              <h3 className={styles.descriptionTitle}>Description</h3>
+              {/* <h3 className={styles.descriptionTitle}>Description</h3> */}
+              <h3 className={styles.descriptionTitle}>NFTの説明</h3>
               <p className={styles.description}>{nft.metadata.description}</p>
               {/* <p>{ slug}</p> */}
 
@@ -204,7 +205,7 @@ export default function TokenPage({ nft, contractMetadata }: Props) {
           </div>
 
           <div className={styles.listingContainer}>
-            {contractMetadata && (
+            {/* {contractMetadata && (
               <div className={styles.contractMetadataContainer}>
                 <MediaRenderer
                   src={contractMetadata.image}
@@ -212,7 +213,7 @@ export default function TokenPage({ nft, contractMetadata }: Props) {
                 />
                 <p className={styles.collectionName}>{contractMetadata.name}</p>
               </div>
-            )}
+            )} */}
             <h1 className={styles.title}>{nft.metadata.name}</h1>
             <p className={styles.collectionName}>Token ID #{nft.metadata.id}</p>
 
